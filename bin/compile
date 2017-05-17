@@ -62,8 +62,7 @@ if [ ! -f /etc/lsb-release ]; then
     fail Sorry, only Ubuntu 16.10 is currently supported
   fi
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "16.10" ]; then
-    echo $DISTRIB_RELEASE
+if [ "$DISTRIB_RELEASE" != "16.04" ]; then
     fail Sorry, only Ubuntu 16.10 is currently supported
   fi
 say Ok.  Ubuntu 16.10 found
