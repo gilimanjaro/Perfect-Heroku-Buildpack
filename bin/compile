@@ -63,9 +63,9 @@ if [ ! -f /etc/lsb-release ]; then
     fail Sorry, only Ubuntu 16.10 is currently supported
   fi
 . /etc/lsb-release
-if [ "$DISTRIB_RELEASE" != "16.04" ]; then
+if [ "$DISTRIB_RELEASE" != $UBUNTU_VERSION ]; then
     echo "Node run on $DISTRIB_RELEASE version"
-    fail Sorry, only Ubuntu 16.10 is currently supported
+    fail Sorry, only Ubuntu $UBUNTU_VERSION is currently supported
   fi
 say Ok.  Ubuntu 16.10 found
 
