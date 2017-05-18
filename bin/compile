@@ -64,6 +64,7 @@ if [ ! -f /etc/lsb-release ]; then
   fi
 . /etc/lsb-release
 if [ "$DISTRIB_RELEASE" != "16.04" ]; then
+    echo "Node run on $DISTRIB_RELEASE version"
     fail Sorry, only Ubuntu 16.10 is currently supported
   fi
 say Ok.  Ubuntu 16.10 found
@@ -132,8 +133,10 @@ step modify pkgconfig files to point to .test directory
 grep -rl "prefix=/usr" $GREP_PATH | xargs sed -i 's|prefix=/usr|prefix=/app/.test/usr|g'
 
 step install swift_ver $SWIFT_VER
+    replace_with = ""
+    result_string="${UBUNTU_VERSION/\./$replace_with}"
     #release build
-    URL=https://swift.org/builds/$SWIFT_VER_LC/ubuntu1604/$SWIFT_VER
+    URL=https://swift.org/builds/$SWIFT_VER_LC/ubuntu$result_string/$SWIFT_VER
     #development build URL=https://swift.org/builds/development/ubuntu1404/$SWIFT_VER
     fetch $SWIFT_VER-ubuntu$UBUNTU_VERSION.tar.gz
     decomp $SWIFT_VER-ubuntu$UBUNTU_VERSION.tar.gz
