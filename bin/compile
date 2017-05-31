@@ -115,10 +115,7 @@ mkdir -p "$APT_STATE_DIR/lists/partial"
 APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
 apt-get $APT_OPTIONS update | indent
 
-apt-get $APT_OPTIONS -y -d install --reinstall clang | indent
-apt-get $APT_OPTIONS -y -d install --reinstall libicu-dev | indent
-apt-get $APT_OPTIONS -y -d install --reinstall libssl-dev | indent
-apt-get $APT_OPTIONS -y -d install --reinstall uuid-dev | indent
+apt-get $APT_OPTIONS -y -d install --reinstall clang libicu-dev libssl-dev uuid-dev | indent
 
 mkdir -p $BUILD_DIR/.test
 
@@ -130,9 +127,7 @@ done
 step Adjust mysqlclient.pc file to be SPM compatible
 ## Ticket: https://bugs.swift.org/browse/SR-4195
 ## Pull request: https://github.com/apple/swift-package-manager/pull/1008
-find / -name 'mysqlclient.pc'
-sed -i 's/-fabi-version=2 -fno-omit-frame-pointer/ /g' $BUILD_DIR/.test/usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
-#sudo sed -i 's/-fabi-version=2 -fno-omit-frame-pointer/ /g' /usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
+sudo sed -i 's/-fabi-version=2 -fno-omit-frame-pointer/ /g' /usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
 
 GREP_PATH="$BUILD_DIR/.test/usr/lib/x86_64-linux-gnu/pkgconfig/"
 
