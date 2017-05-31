@@ -127,6 +127,7 @@ done
 step Adjust mysqlclient.pc file to be SPM compatible
 ## Ticket: https://bugs.swift.org/browse/SR-4195
 ## Pull request: https://github.com/apple/swift-package-manager/pull/1008
+cat /usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
 sed -i 's/-fabi-version=2 -fno-omit-frame-pointer/ /g' /usr/lib/x86_64-linux-gnu/pkgconfig/mysqlclient.pc
 
 GREP_PATH="$BUILD_DIR/.test/usr/lib/x86_64-linux-gnu/pkgconfig/"
